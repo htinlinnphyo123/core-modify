@@ -1,10 +1,8 @@
-@props(['width' => '', 'height' => '', 'src' => '', 'created_at' => ''])
-<div class="flex items-center justify-center gap-4">
-    <img class="{{ $width }} {{ $height }} rounded-full cursor-pointer" src="{{ $src }}"
+@props(['width' => '', 'height' => '', 'src' => '', 'rounded' => null ])
+<div class="gap-4">
+    <x-form.label title="user.profile_photo" />
+    <img class="{{ $width }} {{ $height }} {{ $rounded }} cursor-pointer" src="{{ $src }}"
         alt="" id="profile-photo" onclick="viewImage()">
-    <div class="font-medium dark:text-white">
-        <div class="text-sm text-gray-500 dark:text-gray-400">Joined in {{ $created_at }}</div>
-    </div>
     <div class="div" id="popup">
         <img src="" alt="" id="selected-image" />
     </div>

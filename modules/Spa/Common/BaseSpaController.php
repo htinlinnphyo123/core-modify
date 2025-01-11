@@ -68,7 +68,7 @@ class BaseSpaController extends Controller
     public function calculateMemory($startMemory, $endMemory): string
     {
         $memoryUsed = round(($endMemory - $startMemory) / 1048576, 2);
-        $memoryUsed = $memoryUsed . ' mb';
+        $memoryUsed .= ' mb';
         return $memoryUsed;
     }
 
@@ -84,7 +84,7 @@ class BaseSpaController extends Controller
     public function calculateTime($startTime, $endTime): string
     {
         $time = $endTime - $startTime;
-        $time = $time . ' sec';
+        $time .= ' sec';
         return $time;
     }
 

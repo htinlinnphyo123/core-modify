@@ -28,7 +28,7 @@
                 <div class="relative">
                     <div class="flex gap-3">
                         <div>
-                            <strong class="text-gray-600 dark:text-white me-2" id="operatorName">{{ auth()->user()?->name }}</strong>
+                            <strong class="text-gray-500" id="operatorName">{{ auth()->user()?->name }}</strong>
                             <button id="dropdownDefaultButton" data-dropdown-toggle="logout"
                                 class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
                                 aria-label="Account" aria-haspopup="true" id="click">
@@ -43,13 +43,14 @@
                 <!-- Dropdown menu -->
                 <div id="logout"
                     class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700 ">
-                    <ul class="text-sm text-gray-700 dark:text-gray-200 absolute w-60 rounded-lg shadow top-5 right-3 bg-theme px-5 py-3"
+                    <ul class="text-sm text-gray-700 dark:text-gray-200 absolute w-60 rounded-lg shadow top-5 right-3 bg-blue-300 px-5 py-3"
                         aria-labelledby="dropdownDefaultButton">
                         <li class="flex flex-col items-center ">
                             <img class="object-cover w-16 h-16 rounded-full"
                                 src="{{ auth()->user()?->profile_photo ? retrievePublicFile(auth()->user()->profile_photo) : retrievePublicFile("/Default/default_profile_pic.jpg") }}"
                                 alt="" aria-hidden="true" style="border: 1px solid #bababa;" />
-                            <strong class="text-white text-lg py-2" id="operatorName">
+
+                            <strong class="text-black text-lg py-2" id="operatorName">
                                 {{ auth()->user()?->name }}
                             </strong>
                             <strong class="text-gray-500 text-m">
@@ -60,10 +61,13 @@
                         </li>
                         <br>
                         <li class="text-center">
-                            <a href="{{ route('userProfile') }}" class="mx-auto bg-white text-theme dark:bg-white dark:text-theme  font-medium rounded-lg text-sm
-                                inline-flex items-center px-5 py-2.5 text-center ml-2">
-                                {{ __('messages.profile_btn') }}
-                            </a>
+                            
+                                <a href="{{ route('userProfile') }}" class="mx-auto text-white bg-red-600 hover:bg-red-800 focus:ring-4
+                                    focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm
+                                        inline-flex items-center px-5 py-2.5 text-center ml-2">
+                                   
+                                        {{ __('messages.profile_btn') }}
+                                </a>
                             
                         </li>
                         <br>
@@ -72,7 +76,8 @@
                                 @csrf
                                 <a class="mx-auto">
                                     <button
-                                        class="bg-white text-theme dark:bg-white dark:text-theme font-medium rounded-lg text-sm
+                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4
+                                    focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm
                                         inline-flex items-center px-5 py-2.5 text-center ml-2">
                                         {{ __('messages.logout_btn') }}</button>
                                 </a>

@@ -27,8 +27,6 @@ class UpdateUserRequest extends FormRequest
                 ->where(fn($query) => $query->whereNull('deleted_at')
                     ->where('id', '!=', customDecoder($this->id)))],
             "status" => "numeric|required",
-            "country_id" => "numeric|required",
-            "images.*" => 'image|required',
             "role_id" => "required",
         ];
     }

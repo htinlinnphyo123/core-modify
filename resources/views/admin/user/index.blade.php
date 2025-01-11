@@ -7,17 +7,13 @@
                 <x-common.index_toast field="role_name" />
             </div>
             <x-table.wrapper>
-                <x-table.header :fields="['user_name', 'email', 'country', 'role', 'phone', 'father_name', 'gender', 'status']" />
+                <x-table.header :fields="['user_name', 'email', 'role', 'status']" />
                 <x-table.body :data="$data">
                     @foreach ($data['data'] as $record)
                         <x-table.body_row>
                             <x-table.body_column :field="$record['name']" />
                             <x-table.body_column :field="$record['email']" limit="40" />
-                            <x-table.body_column :field="$record['country']" />
                             <x-table.body_column :field="$record['role']" />
-                            <x-table.body_column :field="$record['phone']" />
-                            <x-table.body_column :field="$record['father_name']" />
-                            <x-table.body_column :field="$record['gender']" />
                             <x-table.status :status="$record['status']"></x-table.status>
                             <x-table.action :id="$record['id']" field="users" :isRole="$record['role']" />
                         </x-table.body_row>

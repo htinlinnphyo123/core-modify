@@ -18,14 +18,11 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function filterUser(array $params): Builder | User
     {
 
-        $connection = $this->connection(true)->with(['country', 'roles']);
+        $connection = $this->connection(true)->with(['roles']);
         if (isset($params['keyword']) && strlen($params['keyword']) > 0) {
             $keyword = $params['keyword'];
-            $connection->where(function (Builder $query) use ($keyword) {
-                $query->orWhereHas('country', function (Builder $q) use ($keyword) {
-                    $q->where('name', 'like', '%' . $keyword . '%');
-                });
-                $query->orWhereHas('roles', function (Builder $q) use ($keyword) {
+            $connection->where(function (Builder $query) use ($keyword): void {
+                $query->orWhereHas('roles', function (Builder $q) use ($keyword): void {
                     $q->where('name', 'like', '%' . $keyword . '%');
                 });
             })->orWhere('name', 'LIKE', '%' . $params['keyword'] . '%')

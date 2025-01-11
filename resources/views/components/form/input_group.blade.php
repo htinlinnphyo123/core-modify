@@ -14,9 +14,9 @@
 <x-form.control>
     <x-form.label :title="$title" :required="$required" />
     <div class="{{ $playEye ? 'relative' : '' }}">
-        <x-form.input :type="$type" name="{{ $name }}" :id="$id" value="{{ $value }}" :placeholder="$placeholder" :disabled="$disabled" />
+        <x-form.input :type="$type" name="{{ $name }}" :id="$id" value="{{ $value }}" :placeholder="$placeholder" :disabled="$disabled" class="{{ $playEye ? 'password' : ''}}"/>
         @if ($playEye)
-            <x-common.loginEyes togglePassword="togglePassword" showEyes="showEyes" removeEyes="removeEyes" />
+            <x-common.loginEyes />
         @endif
     </div>
     <x-form.helper_text message="{{ $helperText }}" />

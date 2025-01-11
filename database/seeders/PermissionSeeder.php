@@ -26,10 +26,6 @@ class PermissionSeeder extends Seeder
             }
         }
 
-        Permission::create([
-            'name' => 'publish articles'
-        ]);
-
         $role = Role::create(['name' => 'super_admin']);
         $role->givePermissionTo(Permission::all());
 

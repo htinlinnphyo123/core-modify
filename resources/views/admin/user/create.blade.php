@@ -29,34 +29,8 @@
                     :playEye="true" :required="true" />
                 {{-- Password --}}
 
-                {{-- Country Multi Select --}}
-                {{-- <x-form.multi_select title="user.country" name="country_id[]">
-                    @foreach ($viewCountries as $c)
-                        <option value="{{ $c['id'] }}">
-                            {{ $c['name'] }}
-                        </option>
-                    @endforeach
-                </x-form.multi_select> --}}
-                {{-- Country Multi Select --}}
-
-                {{-- Country Single Select --}}
-                <x-form.single_select title="user.country" name="country_id" :required="true">
-                    @foreach ($viewCountries as $c)
-                        <option value="{{ $c['id'] }}">
-                            {{ $c['name'] }}
-                        </option>
-                    @endforeach
-                </x-form.single_select>
-                {{-- Country Single Select --}}
-
                 {{-- Role Single Select --}}
-                <x-form.single_select title="user.role" name="role_id" :required="true">
-                    @foreach ($viewRoles as $r)
-                        <option value="{{ $r['id'] }}">
-                            {{ $r['name'] }}
-                        </option>
-                    @endforeach
-                </x-form.single_select>
+                <x-form.compose_single_select title="user.role" name="role_id" id="role_id" :required="true" :dataArray="$viewRoles" />
                 {{-- Role Single Select --}}
 
                 {{-- ID number --}}
@@ -76,19 +50,11 @@
                 {{-- Father Name Other --}}
 
                 {{-- Gender --}}
-                <x-form.single_select title="user.gender" name="gender">
-                    <option value="Male">{{ __('user.male') }}</option>
-                    <option value="Female">{{ __('user.female') }}</option>
-                </x-form.single_select>
+                <x-form.enum_select title="user.gender" name="gender" id="gender" enumClass="Gender" />
                 {{-- Gender --}}
 
                 {{-- Martial Status --}}
-                <x-form.single_select title="user.martial_status" name="martial_status">
-                    <option value="Single">{{ __('user.single') }}</option>
-                    <option value="Married">{{ __('user.married') }}</option>
-                    <option value="Divorced">{{ __('user.divorced') }}</option>
-                    <option value="Widowed">{{ __('user.widowed') }}</option>
-                </x-form.single_select>
+                <x-form.enum_select title="user.martial_status" name="martial_status" id="gender" enumClass="MartialStatus" />
                 {{-- Martial Status --}}
 
                 {{-- Occupation --}}

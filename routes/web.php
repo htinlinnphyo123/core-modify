@@ -38,24 +38,16 @@ Route::get('optimize-hey-yo', function () {
 require __DIR__ . "/Web/Guest/guestRoute.php";
 require __DIR__ . "/Web/Localization/localizationRoute.php";
 
-Route::group(['middleware' => ['auth', 'permission.check']], function () {
+Route::group(['middleware' => ['auth', 'permission.check']], function (): void {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     require __DIR__ . "/Web/User/userRoute.php";
 
-    Route::resource('countries', CountryController::class);
-    Route::resource('addresses', AddressController::class);
     Route::resource('audits', AuditController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('settings', SettingController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('subcategories', SubcategoryController::class);
-    Route::resource('notifications', NotificationController::class);
-    Route::resource('articles', ArticleController::class);
-    Route::resource('currencies', CurrencyController::class);
     Route::resource('pages', PageController::class);
-    Route::resource('sponsorAds', SponsorAdController::class);
 });
 Route::get('/profile', [UserController::class, 'profile'])->name('userProfile')->middleware('auth');
 

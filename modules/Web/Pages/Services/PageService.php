@@ -149,7 +149,7 @@ class PageService extends BaseController
             //UPDATE Thumbnail and Media(link) if new files are added
             $newPaths = count($generatedPaths)>0 ? array_merge($orgMediaArray,$generatedPaths) : $orgMediaArray;
             $thumbnailPath = isset($request['thumbnail']) ? uploadImageToDigitalOcean($request['thumbnail'],$path) : $model['thumbnail'];
-            
+
             $generatedUrls = array_column($generatedArray,'url'); //to return to frontend 
             $model->update([
                 'link' => $newPaths,

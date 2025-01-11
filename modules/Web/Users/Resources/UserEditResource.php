@@ -8,6 +8,7 @@ class UserEditResource extends JsonResource
 {
     public function toArray($request): array
     {
+        $profilePhoto = $this->profile_photo ?: "/Default/default_profile_pic.jpg";
         return [
             "id" => customEncoder($this->id),
             "name" => $this->name,
@@ -24,7 +25,7 @@ class UserEditResource extends JsonResource
             'gender' => $this->gender,
             'martial_status' => $this->martial_status,
             'occupation' => $this->occupation,
-            'profile_photo' => $this->profile_photo != null ? env("DIGITALOCEAN_SPACES_ENDPOINT") . "/" . $this->profile_photo : null,
+            'profile_photo' => retrievePublicFile($profilePhoto),
         ];
     }
 }

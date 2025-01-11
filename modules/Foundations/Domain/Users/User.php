@@ -3,10 +3,8 @@
 namespace BasicDashboard\Foundations\Domain\Users;
 
 use App\Observers\AuditObserver;
-use BasicDashboard\Foundations\Domain\Countries\Country;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,12 +38,5 @@ class User extends Authenticatable
     protected $casts = [
         'status' => 'boolean'
     ];
-
-    public function country(): BelongsTo
-    {
-        return $this->belongsTo(Country::class)->withDefault([
-            'name' => '---',
-        ]);
-    }
 
 }

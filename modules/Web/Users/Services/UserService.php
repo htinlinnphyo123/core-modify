@@ -33,7 +33,7 @@ class UserService extends BaseController
         $userList = $this->userRepository->getUserList($request);
         $userList = UserResource::collection($userList)->response()->getData(true);
         // dd($userList);
-        return $this->returnView(self::VIEW . '.index', $userList, $request);
+        return $this->returnView(self::VIEW . '.index', $userList);
     }
 
     public function create(): View

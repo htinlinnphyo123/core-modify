@@ -19,20 +19,13 @@ export default defineConfig({
         "resources/js/app.js",
         "resources/js/bootstrap.js",
 
-        //admin total (7)
-        "resources/js/admin/articlecreate.js",
-        "resources/js/admin/articleupdate.js",
+        //admin total (6)
         "resources/js/admin/disableSubmitButton.js",
         "resources/js/admin/enableSubmitButton.js",
-        "resources/js/admin/notificationcreate.js",
-        "resources/js/admin/notificationedit.js",
         "resources/js/admin/pagecreate.js",
         "resources/js/admin/pageupdate.js",
         "resources/js/admin/usercreate.js",
-        "resources/js/admin/sendarticlenotification.js",
-        "resources/js/admin/sendnotification.js",
         "resources/js/admin/uploadMediaToPresignedUrl.js",
-        "resources/js/admin/notificationfrequencytoggler.js",
 
         //common total (23)
         "resources/js/common/customCropper.js",

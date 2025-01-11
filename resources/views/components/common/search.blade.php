@@ -14,7 +14,7 @@
                     </svg>
                 </div>
                 <input type="text" id="table-search" name="keyword" value="{{ isset($keyword) ? $keyword : '' }}"
-                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-gray-300 dark:focus:border-gray-500"
+                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="{{ __('messages.search_item') }}">
 
                 <a href="{{ request()->url() }}" class="cursor-pointer" id="clearSearch">
@@ -34,7 +34,7 @@
         <div class="mb-0 ml-1">
             <a href="" class="cursor-pointer" id="btnSearch">
                 <div
-                    class="block p-2 text-center text-sm border bg-theme border-gray-300 rounded-lg w-20 hover:bg-gray-800 hover:text-white text-white dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    class="block p-2 text-center text-sm border bg-theme border-gray-300 rounded-lg w-20 hover:bg-gray-800 hover:text-white text-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     {{ __('messages.search') }}</div>
             </a>
         </div>

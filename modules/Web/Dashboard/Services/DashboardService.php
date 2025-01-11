@@ -7,12 +7,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use BasicDashboard\Web\Common\BaseController;
 use BasicDashboard\Web\Articles\Resources\ArticleResource;
-use BasicDashboard\Foundations\Domain\Articles\Repositories\ArticleRepositoryInterface;
 
 class DashboardService extends BaseController
 {
     public function __construct(
-        private ArticleRepositoryInterface $articleRepositoryInterface
     ) {
     }
 
@@ -21,16 +19,14 @@ class DashboardService extends BaseController
      */
     public function index()
     {
-        $mostViewArticles = $this->articleRepositoryInterface->getTheMostView(5);
-        $mostViewArticles = ArticleResource::collection($mostViewArticles)->response()->getData(true);
-        $onlineUsers = $this->getOnlineUsers()->toArray();
-        return view('admin.dashboard.index',compact('mostViewArticles','onlineUsers'));
+        $onlineUsers = ['data'=>$this->getOnlineUsers()->toArray()];
+        return view('admin.dashboard.index',compact('onlineUsers'));
     }
 
     protected function getOnlineUsers() : Collection
     {
         $activeUsers = $this->fetchOnlineUsers(); 
-        $formatUsers = $activeUsers->each(function($user){
+        $formatUsers = $activeUsers->each(function($user): void{
             $user->last_activity = $this->formatLastActivity($user->last_activity);
             $user->user_agent = $this->formatuserAgent($user->user_agent);
         });

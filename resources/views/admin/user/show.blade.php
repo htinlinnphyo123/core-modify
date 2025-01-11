@@ -25,10 +25,6 @@
             <x-show.text_group title="user.phone" :data="$data['phone']" />
             {{-- Phone Number --}}
 
-            {{-- Country --}}
-            <x-show.text_group title="user.country" :data="$data['country']" />
-            {{-- Country --}}
-
             {{-- Role --}}
             <x-show.text_group title="user.role" :data="$data['role']" />
             {{-- Role --}}

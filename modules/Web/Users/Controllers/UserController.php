@@ -56,7 +56,6 @@ class UserController extends BaseController
 
     public function update(UpdateUserRequest $request, string $id): RedirectResponse
     {
-
         return $this->userService->update($request->all(), $id);
     }
 

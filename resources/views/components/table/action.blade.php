@@ -1,4 +1,4 @@
-@props(['id', 'field', 'isRole' => null])
+@props(['id', 'field', 'isRole' => null,'editFalse'=>false])
 <td class="px-3 py-0.5 me-2">
     <style>
         .my-svg {
@@ -9,7 +9,11 @@
     <div class="flex justify-end items-center ">
         <button id="action_dropdown_btn_{{ $id }}" data-dropdown-toggle="action_{{ $id }}"
             type="button" data-dropdown-placement="left">
-            <i class="fa-solid fa-bars text-xl cursor-pointer"></i>
+            <svg class="my-svg" viewBox="0 0 100 80" width="30" height="30">
+                <rect width="90" height="10" rx="10"></rect>
+                <rect y="20" width="90" height="10" rx="10"></rect>
+                <rect y="40" width="90" height="10" rx="10"></rect>
+            </svg>
         </button>
 
         <!-- Dropdown menu -->
