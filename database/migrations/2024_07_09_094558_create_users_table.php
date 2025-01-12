@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\Gender;
+use App\Enums\MartialStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,8 +26,8 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('father_name')->nullable();
             $table->string('father_name_other')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('martial_status')->nullable();
+            $table->enum('gender',Gender::toArray())->nullable();
+            $table->enum('martial_status',MartialStatus::toArray())->nullable();
             $table->string('education_status')->nullable();
             $table->string('occupation')->nullable();
             $table->string('profile_photo')->nullable();

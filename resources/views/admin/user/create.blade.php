@@ -1,6 +1,15 @@
 <x-master-layout name="User" headerName="{{ __('sidebar.user') }}">
     @vite('resources/css/multipleSelectCreate.css')
     <x-form.layout>
+        @if ($errors->any())
+            <div class="text-red-600">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data" id="user-create-form">
             @csrf
             <x-form.grid>
@@ -30,7 +39,8 @@
                 {{-- Password --}}
 
                 {{-- Role Single Select --}}
-                <x-form.compose_single_select title="user.role" name="role_id" id="role_id" :required="true" :dataArray="$viewRoles" />
+                <x-form.compose_single_select title="user.role" name="role_id" id="role_id" :required="true"
+                    :dataArray="$viewRoles" />
                 {{-- Role Single Select --}}
 
                 {{-- ID number --}}
@@ -54,7 +64,8 @@
                 {{-- Gender --}}
 
                 {{-- Martial Status --}}
-                <x-form.enum_select title="user.martial_status" name="martial_status" id="gender" enumClass="MartialStatus" />
+                <x-form.enum_select title="user.martial_status" name="martial_status" id="gender"
+                    enumClass="MartialStatus" />
                 {{-- Martial Status --}}
 
                 {{-- Occupation --}}

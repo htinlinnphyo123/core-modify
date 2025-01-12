@@ -19,6 +19,10 @@ class UpdateUserRequest extends FormRequest
         $this->offsetUnset('_method');
     }
 
+    /**
+     * Rules For Updating User
+     * @return array<string,mixed>
+     */
     public function rules(): array
     {
         return [
@@ -30,6 +34,12 @@ class UpdateUserRequest extends FormRequest
             "role_id" => "required",
         ];
     }
+
+    /**
+     * After Passed Validation
+     * @return void
+     */
+    protected string|null $password;
 
     protected function passedValidation(): void
     {
@@ -49,8 +59,6 @@ class UpdateUserRequest extends FormRequest
             'name.required' => __('user.username_validation'),
             'email.required' => __('user.email_validation'),
             'password.required' => __('user.password_validation'),
-            'status.required' => __('user._validation'),
-            'country_id.required' => __('user.country_id_validation'),
             'role_id.required' => __('user.role_id_validation'),
         ];
     }
