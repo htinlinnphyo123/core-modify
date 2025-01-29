@@ -13,6 +13,7 @@ use BasicDashboard\Web\Users\Resources\UserResource;
 use BasicDashboard\Web\Users\Resources\UserEditResource;
 use BasicDashboard\Foundations\Domain\Roles\Repositories\RoleRepositoryInterface;
 use BasicDashboard\Foundations\Domain\Users\Repositories\UserRepositoryInterface;
+use Illuminate\Support\Facades\Response;
 
 class UserService extends BaseController
 {
@@ -33,7 +34,7 @@ class UserService extends BaseController
         $userList = $this->userRepository->getUserList($request);
         $userList = UserResource::collection($userList)->response()->getData(true);
         // dd($userList);
-        return $this->returnView(self::VIEW . '.index', $userList);
+        return response()->successView(self::VIEW . '.index', $userList);
     }
 
     public function create(): View
