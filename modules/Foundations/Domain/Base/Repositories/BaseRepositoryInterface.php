@@ -56,4 +56,5 @@ interface BaseRepositoryInterface
     public function commit():void;
     public function edit($id): mixed; 
     public function show($id): mixed;
+    public function connection($useModel = false): mixed;
 }
