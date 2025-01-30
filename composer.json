@@ -20,13 +20,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
+        "barryvdh/laravel-ide-helper": "^3.5",
         "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.31",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8.1",
-        "nunomaduro/larastan": "^3.0",
         "phpunit/phpunit": "^10.0",
         "rector/rector": "^2.0",
         "spatie/laravel-ignition": "^2.0"
@@ -39,7 +39,9 @@
             "BasicDashboard\\": "modules/",
             "Laravel\\": "modules/"
         },
-        "files":["app/Helpers/generalHelper.php"]
+        "files":[
+            "app/Helpers/generalHelper.php"
+        ]
     },
    
     "autoload-dev": {

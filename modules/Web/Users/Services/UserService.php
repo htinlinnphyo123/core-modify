@@ -7,13 +7,15 @@ use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\ResponseFactory;
+use Illuminate\Support\Facades\Response;
 use BasicDashboard\Web\Common\BaseController;
 use BasicDashboard\Foundations\Domain\Users\User;
 use BasicDashboard\Web\Users\Resources\UserResource;
 use BasicDashboard\Web\Users\Resources\UserEditResource;
 use BasicDashboard\Foundations\Domain\Roles\Repositories\RoleRepositoryInterface;
 use BasicDashboard\Foundations\Domain\Users\Repositories\UserRepositoryInterface;
-use Illuminate\Support\Facades\Response;
+// use Illuminate\Support\Facades\Response;
 
 class UserService extends BaseController
 {
@@ -23,18 +25,17 @@ class UserService extends BaseController
     const ROOT = "Users";
 
     public function __construct(
-        private UserRepositoryInterface $userRepository,
-        private RoleRepositoryInterface $roleRepository,
+        private UserRepositoryInterface $userRepositoryInterface,
+        private RoleRepositoryInterface $roleRepositoryInterface,
+        private ResponseFactory $responseFactory
     ) {}
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
-
     public function index(array $request): View
     {
-        $userList = $this->userRepository->getUserList($request);
+        $userList = $this->userRepositoryInterface->getUserList($request);
         $userList = UserResource::collection($userList)->response()->getData(true);
-        // dd($userList);
-        return response()->successView(self::VIEW . '.index', $userList);
+        return $this->responseFactory->successView(path: self::VIEW . '.index', data: $userList);
     }
 
     public function create(): View
@@ -48,21 +49,21 @@ class UserService extends BaseController
     {
         try {
             $image = null;
-            $this->userRepository->beginTransaction();
+            $this->userRepositoryInterface->beginTransaction();
             if (isset($request['profile_photo'])) {
                 $image = $request['profile_photo']; //store image to another variable
                 $request['profile_photo'] = null; //remove value of profile photo
             }
             $roleName = $this->getRoleName($request['role_id']);
             $request = Arr::except($request, ['role_id']); //remove array key and value role_id bcz there is no role_id column in users table
-            $user = $this->userRepository->insert($request); //insert user by repo base method
+            $user = $this->userRepositoryInterface->insert($request); //insert user by repo base method
             $user->assignRole($roleName); //user role assign
             $data = $this->uploadImageToCloud($user, $image); //upload image to digital ocean path(User/id/demo.jpg)
             $user->update($data); //update previous user of profile photo by laravel method
-            $this->userRepository->commit();
-            return $this->redirectRoute(self::ROUTE . ".index", __(self::LANG_PATH . '_created'));
+            $this->userRepositoryInterface->commit();
+            return $this->responseFactory->successIndexRedirect(self::ROUTE, __(self::LANG_PATH . '_created'));
         } catch (Exception $e) {
-            return $this->redirectBackWithError($this->userRepository, $e);
+            return $this->redirectBackWithError($this->userRepositoryInterface, $e);
         }
     }
 
@@ -70,20 +71,20 @@ class UserService extends BaseController
 
     public function edit(string $id): View | RedirectResponse
     {
-        $user = $this->userRepository->edit($id);
+        $user = $this->userRepositoryInterface->edit($id);
         $user = new UserEditResource($user);
         $user = $user->response()->getData(true)['data'];
-        return $this->returnView(self::VIEW . ".edit", $user);
+        return $this->responseFactory->successView(self::VIEW . ".edit", $user);
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function show($id): View | RedirectResponse
     {
-        $user = $this->userRepository->show($id);
+        $user = $this->userRepositoryInterface->show($id);
         $user = new UserResource($user);
         $user = $user->response()->getData(true)['data'];
-        return $this->returnView(self::VIEW . '.show', $user);
+        return $this->responseFactory->successView(self::VIEW . '.show', $user);
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////
@@ -93,8 +94,8 @@ class UserService extends BaseController
         $image = null;
         try {
             // dd($request['role_id']);
-            $this->userRepository->beginTransaction();
-            $user = $this->userRepository->edit($id);
+            $this->userRepositoryInterface->beginTransaction();
+            $user = $this->userRepositoryInterface->edit($id);
             $oldImage = $user->profile_photo;
             if (isset($request['profile_photo'])) {
                 $image = $request['profile_photo']; //store image to another variable
@@ -102,14 +103,14 @@ class UserService extends BaseController
             }
             $roleName = $this->getRoleName($request['role_id']);
             $request = Arr::except($request, ['role_id']);
-            $this->userRepository->update($request, $id);
+            $this->userRepositoryInterface->update($request, $id);
             $user->syncRoles($roleName);
             $data = $this->uploadImageToCloudForUpdate($user, $image, $oldImage); //upload image to digital ocean path(User/id/demo.jpg)
             $user->update($data);
-            $this->userRepository->commit();
-            return $this->redirectRoute(self::ROUTE . ".index", __(self::LANG_PATH . '_updated'));
+            $this->userRepositoryInterface->commit();
+            return $this->responseFactory->successIndexRedirect(self::ROUTE, __(self::LANG_PATH . '_updated'));
         } catch (Exception $e) {
-            return $this->redirectBackWithError($this->userRepository, $e);
+            return $this->redirectBackWithError($this->userRepositoryInterface, $e);
         }
     }
 
@@ -118,17 +119,17 @@ class UserService extends BaseController
     public function destroy($request): RedirectResponse
     {
         try {
-            $this->userRepository->beginTransaction();
-            $user = $this->userRepository->edit($request['id']);
-            $this->userRepository->delete($request['id']);
+            $this->userRepositoryInterface->beginTransaction();
+            $user = $this->userRepositoryInterface->edit($request['id']);
+            $this->userRepositoryInterface->delete($request['id']);
             $user->removeRole($request['role_name']);
             if ($user->profile_photo != null) {
                 $this->deleteImageFromCloud($user->profile_photo);
             }
-            $this->userRepository->commit();
+            $this->userRepositoryInterface->commit();
             return $this->redirectRoute(self::ROUTE . ".index", __(self::LANG_PATH . '_deleted'));
         } catch (Exception $e) {
-            return $this->redirectBackWithError($this->userRepository, $e);
+            return $this->redirectBackWithError($this->userRepositoryInterface, $e);
         }
     }
 
@@ -169,7 +170,7 @@ class UserService extends BaseController
     public function profile()
     {
         $id = customEncoder(Auth::id());
-        $user = $this->userRepository->show($id);
+        $user = $this->userRepositoryInterface->show($id);
         $user = new UserResource($user);
         $user = $user->response()->getData(true)['data'];      
         

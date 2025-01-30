@@ -15,8 +15,8 @@ class PageSeeder extends Seeder
      */
     public function run()
     {
-        $data = $this->prepareData();
-        DB::table("pages")->insert($data);
+        // $data = $this->prepareData();
+        // DB::table("pages")->insert($data);
     }
     
     private function prepareData()

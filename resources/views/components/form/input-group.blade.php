@@ -19,7 +19,7 @@
             <x-common.loginEyes />
         @endif
     </div>
-    <x-form.helper_text message="{{ $helperText }}" />
+    <x-form.helper-text message="{{ $helperText }}" />
     <x-form.error :field="$name" />
     {{ $ajaxError }}
 </x-form.control>

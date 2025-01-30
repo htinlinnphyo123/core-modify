@@ -116,9 +116,9 @@ class AddFieldsToView extends Command
             $valueBinding = $viewType === 'edit' ? ":value=\"\$data['{$name}']\"" : '';
     
             if ($type === 'enum') {
-                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.enum_select title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' enumClass='{$capitalizeName}' {$valueBinding} />\n                {{-- {$name} --}}\n";
+                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.enum-select title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' enumClass='{$capitalizeName}' {$valueBinding} />\n                {{-- {$name} --}}\n";
             } else {
-                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.input_group title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' {$valueBinding} />\n                {{-- {$name} --}}\n";
+                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.input-group title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' {$valueBinding} />\n                {{-- {$name} --}}\n";
             }
         }
     
