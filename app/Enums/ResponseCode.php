@@ -37,4 +37,23 @@ enum ResponseCode: int
             self::ServiceUnavailable => 'Service Unavailable',
         };
     }
+
+    public function responseType(): string
+    {
+        return match ($this) {
+            self::Success => 'success',
+            self::Created => 'Created',
+            self::Accepted => 'Accepted',
+            self::NoContent => 'No Content',
+            self::BadRequest => 'Bad Request',
+            self::Unauthorized => 'Unauthorized',
+            self::Forbidden => 'Forbidden',
+            self::NotFound => 'Not Found',
+            self::MethodNotAllowed => 'Method Not Allowed',
+            self::ValidationError => 'Validation Error', // Description for 422
+            self::InternalServerError => 'error',
+            self::ServiceUnavailable => 'Service Unavailable',
+        };
+    }
+
 }

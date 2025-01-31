@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\ResponseCode;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Response;
@@ -42,21 +43,21 @@ class ResponseMacroProvider extends ServiceProvider
             $indexRoute = "$model.$index";
             return to_route($indexRoute)->with([
                 'message' => $message,
-                'responseType' => 'success',
+                'responseType' => ResponseCode::Success->responseType(),
             ]);
         });
         Response::macro('successShowRedirect',function(string $model,string $id,string $message,string $show='show'): RedirectResponse{
             $showRoute = "$model.$show";
             return to_route($showRoute,$id)->with([
                 'message' => $message,
-                'responseType' => 'success',
+                'responseType' => ResponseCode::Success->responseType(),
             ]);
         });
         Response::macro('redirectBackWithError',function($repository,$message): RedirectResponse{
             $repository->rollBack();
             return redirect()->back()->with([
                 'message' => $message,
-                'responseType' => 'error',
+                'responseType' => ResponseCode::InternalServerError->responseType(),
             ]);
         });
 
