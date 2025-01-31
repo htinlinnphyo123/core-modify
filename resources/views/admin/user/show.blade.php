@@ -1,62 +1,85 @@
 <x-master-layout name="User" headerName="{{ __('sidebar.user') }}">
     <x-form.layout>
-        <x-common.url_back_button />
-        <br><br>
+            
+            <x-form.grid>
+                
+                {{-- name --}}
+                <x-show.text-group title='user.name' :data="$data['name']"  />
+                {{-- name --}}
 
-        {{-- Avatar Img --}}
-        <x-show.profile_photo :src="$data['profile_photo']" width="w-20" height="h-20" :created_at="$data['created_at']" />
-        <br>
-        {{-- Avatar Img --}}
-        <x-show.grid :isBackground='true'>
+                {{-- name_other --}}
+                <x-form.input-group title='user.name_other' name='name_other' id='name_other'  />
+                {{-- name_other --}}
 
-            {{-- Name --}}
-            <x-show.text_group title="user.username" :data="$data['name']" />
-            {{-- Name --}}
+                {{-- email --}}
+                <x-form.input-group title='user.email' name='email' id='email'  />
+                {{-- email --}}
 
-            {{-- Name Other --}}
-            <x-show.text_group title="user.username_other" :data="$data['name_other']" />
-            {{-- Name Other --}}
+                {{-- phone --}}
+                <x-form.input-group title='user.phone' name='phone' id='phone'  />
+                {{-- phone --}}
 
-            {{-- Email --}}
-            <x-show.text_group title="user.user_email" :data="$data['email']" />
-            {{-- Email --}}
+                {{-- password --}}
+                <x-form.input-group title='user.password' name='password' id='password'  />
+                {{-- password --}}
 
-            {{-- Phone Number --}}
-            <x-show.text_group title="user.phone" :data="$data['phone']" />
-            {{-- Phone Number --}}
+                {{-- id_number --}}
+                <x-form.input-group title='user.id_number' name='id_number' id='id_number'  />
+                {{-- id_number --}}
 
-            {{-- Role --}}
-            <x-show.text_group title="user.role" :data="$data['role']" />
-            {{-- Role --}}
+                {{-- date_of_birth --}}
+                <x-form.input-group title='user.date_of_birth' name='date_of_birth' id='date_of_birth'  />
+                {{-- date_of_birth --}}
 
-            {{-- ID Number --}}
-            <x-show.text_group title="user.id_number" :data="$data['id_number']" />
-            {{-- ID Number --}}
+                {{-- father_name --}}
+                <x-form.input-group title='user.father_name' name='father_name' id='father_name'  />
+                {{-- father_name --}}
 
-            {{-- Date of Birth --}}
-            <x-show.text_group title="user.date_of_birth" :data="$data['date_of_birth']" />
-            {{-- Date of Birth --}}
+                {{-- father_name_other --}}
+                <x-form.input-group title='user.father_name_other' name='father_name_other' id='father_name_other'  />
+                {{-- father_name_other --}}
 
-            {{-- Father Name --}}
-            <x-show.text_group title="user.father_name" :data="$data['father_name']" />
-            {{-- Father Name --}}
+                {{-- gender --}}
+                <x-form.enum-select title='user.gender' name='gender' id='gender' enumClass='Gender'  />
+                {{-- gender --}}
 
-            {{-- Father Name Other --}}
-            <x-show.text_group title="user.father_name_other" :data="$data['father_name_other']" />
-            {{-- Father Name Other --}}
+                {{-- martial_status --}}
+                <x-form.enum-select title='user.martial_status' name='martial_status' id='martial_status' enumClass='MartialStatus'  />
+                {{-- martial_status --}}
 
-            {{-- Gender --}}
-            <x-show.text_group title="user.gender" :data="$data['gender']" />
-            {{-- Gender --}}
+                {{-- education_status --}}
+                <x-form.input-group title='user.education_status' name='education_status' id='education_status'  />
+                {{-- education_status --}}
 
-            {{-- Martial Status --}}
-            <x-show.text_group title="user.martial_status" :data="$data['martial_status']" />
-            {{-- Martial Status --}}
+                {{-- occupation --}}
+                <x-form.input-group title='user.occupation' name='occupation' id='occupation'  />
+                {{-- occupation --}}
 
-            {{-- Occupation --}}
-            <x-show.text_group title="user.occupation" :data="$data['occupation']" />
-            {{-- Occupation --}}
+                {{-- profile_photo --}}
+                <x-form.input-group title='user.profile_photo' name='profile_photo' id='profile_photo'  />
+                {{-- profile_photo --}}
 
-        </x-show.grid>
+                {{-- country_id --}}
+                <x-form.input-group title='user.country_id' name='country_id' id='country_id'  />
+                {{-- country_id --}}
+
+                {{-- oauth_id --}}
+                <x-form.input-group title='user.oauth_id' name='oauth_id' id='oauth_id'  />
+                {{-- oauth_id --}}
+
+                {{-- oauth_provider --}}
+                <x-form.input-group title='user.oauth_provider' name='oauth_provider' id='oauth_provider'  />
+                {{-- oauth_provider --}}
+
+                {{-- level --}}
+                <x-form.input-group title='user.level' name='level' id='level'  />
+                {{-- level --}}
+
+                {{-- status --}}
+                <x-form.input-group title='user.status' name='status' id='status'  />
+                {{-- status --}}
+
+            </x-form.grid>
+          
     </x-form.layout>
 </x-master-layout>

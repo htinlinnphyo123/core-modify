@@ -55,24 +55,7 @@
                 {{-- End Dashboard --}}
                 <x-sidebar.list title="sidebar.user-types" model="user-types" icon="fa-solid fa-user" />
                 <x-sidebar.list title="sidebar.user" model="users" icon="fa-solid fa-user" />
-                <x-sidebar.list title="sidebar.association" model="associations" icon="fa-solid fa-user-plus" />
-                <x-sidebar.list title="sidebar.announcement" model="announcements" icon="fa-solid fa-bell" />
-                <x-sidebar.list title="sidebar.client" model="clients" icon="fa-solid fa-users" />
-                <x-sidebar.list title="sidebar.project" model="projects" icon="fa-solid fa-file" />
-                <x-sidebar.list title="sidebar.branches" model="branches" icon="fa-solid fa-user" />
-                <x-sidebar.multi_menu dropdownName="sidebar_category" menuName="sidebar.catagory_menu" :menuLists="['categories','subcategories']">
-                    <x-sidebar.list title="sidebar.category" model="categories" icon="fa-solid fa-list" />
-                </x-sidebar.multi_menu>
-                <x-sidebar.list title="sidebar.page" model="pages" icon="fa-solid fa-scroll" />
-                <x-sidebar.list title="sidebar.notification" model="notifications" icon="fa-solid fa-bell"/>
-                <x-sidebar.multi_menu dropdownName="sidebar_setting" menuName="sidebar.setting" :menuLists="['audits','roles','countries','address']"
-                menuIcon="fa-solid fa-gear">
-                    <x-sidebar.list title="sidebar.role" model="roles" icon="fa-brands fa-r-project" />
-                    <x-sidebar.list title="sidebar.audit" model="audits" icon="fa-brands fa-audible" />
-                    <!-- <x-sidebar.list title="sidebar.setting" model="settings" icon="fa-solid fa-gear" /> -->
-                    <x-sidebar.list title="sidebar.country" model="countries" icon="fa-solid fa-globe" />
-                    <x-sidebar.list title="sidebar.address" model="addresses" icon="fa-solid fa-location-dot" />
-                </x-sidebar.multi_menu>
+                <x-sidebar.list title="sidebar.page" model="pages" icon="fa-solid fa-scroll" />               
             </ul>
         </div>
         <small class="text-xs text-gray-800/50 font-bold ps-2 fixed bottom-4 left-2 menu-title">

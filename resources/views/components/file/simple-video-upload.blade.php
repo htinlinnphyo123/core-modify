@@ -13,7 +13,7 @@
     <input type="file" name="{{ $name }}" id="{{ $id }}"
         class="block w-full text-sm text-gray-900 border-2 border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none {{ $class }}"
         aria-label="file example" accept="video/*" onchange="customVideoUploadHandler(this,'{{ $videoId }}')">
-    <x-form.helper_text message="{{ $helperText }}" />
+    <x-form.helper-text message="{{ $helperText }}" />
     <div id="video-preview">
         @if($videoSrc)
             <video src="{{ $videoSrc }}" id="{{ $videoId }}" controls class="border rounded-lg" ></video>

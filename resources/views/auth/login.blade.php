@@ -6,7 +6,7 @@
             right: -270px;
         }
     </style>
-    <x-common.failed_message />
+    <x-common.failed-message />
     <br><br><br><br><br>
     <div class="container mx-auto text-center mt-auto">
         <p class="text-5xl text-gray-500 dark:text-white">{{ __('messages.login_title') }}</p>
@@ -26,7 +26,7 @@
                     </div>
                     <div class=" px-2 flex flex-col pb-4">
                         <x-common.label for="password" :title="__('messages.password')" />
-                        <x-common.Input type="password" name="password" id="password" />
+                        <x-common.input type="password" name="password" id="password" />
                         <div class="container" id="togglePassword">
                             <svg class="w-5 h-5 cursor-pointer hidden" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="showEyes">

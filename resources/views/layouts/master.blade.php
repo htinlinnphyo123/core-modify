@@ -8,7 +8,7 @@
             <div class="hidden" id="loadingFalse">
                 {{ $slot }}
             </div>
-            <x-loading.loading_two></x-loading.loading_two>
+            <x-loading.loading-two></x-loading.loading-two>
         </div>
         @vite(['resources/js/common/navShowHide.js'])
     </div>

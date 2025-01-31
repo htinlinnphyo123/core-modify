@@ -3,135 +3,88 @@
         <form action="{{ route('users.update', $data['id']) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="id" value="{{ $data['id'] }}">
             <x-form.grid>
-                {{-- Avatar Img --}}
-                <x-file.simple_img_upload title="user.avatar_pic" name="profile_photo" id="profile-photo"
-                    photoId="profile-photo-pic" imageSrc="{{ $data['profile_photo'] }}" />
-                <br>
-                {{-- Avatar Img --}}
+                
+                {{-- name --}}
+                <x-form.input-group title='user.name' name='name' id='name' :value="$data['name']" />
+                {{-- name --}}
 
-                {{-- Name --}}
-                <x-form.input_group title="user.username" name="name" id="name" :value="$data['name']" :required="true"
-                    placeholder="username" />
-                {{-- Name --}}
+                {{-- name_other --}}
+                <x-form.input-group title='user.name_other' name='name_other' id='name_other' :value="$data['name_other']" />
+                {{-- name_other --}}
 
-                {{-- Name Other --}}
-                <x-form.input_group title="user.username_other" name="name_other" id="name_other" :value="$data['name_other']"
-                    placeholder="username_other" />
-                {{-- Name Other --}}
+                {{-- email --}}
+                <x-form.input-group title='user.email' name='email' id='email' :value="$data['email']" />
+                {{-- email --}}
 
-                {{-- Email --}}
-                <x-form.input_group title="user.email" name="email" id="email" :value="$data['email']" :required="true"
-                    placeholder="email" />
-                {{-- Email --}}
+                {{-- phone --}}
+                <x-form.input-group title='user.phone' name='phone' id='phone' :value="$data['phone']" />
+                {{-- phone --}}
 
-                {{-- Phone Number --}}
-                <x-form.input_group title="user.phone" name="phone" id="phone" :value="$data['phone']"
-                    placeholder="phone" />
-                {{-- Phone Number --}}
+                {{-- password --}}
+                <x-form.input-group title='user.password' name='password' id='password' :value="$data['password']" />
+                {{-- password --}}
 
-                {{-- Password --}}
-                <x-form.input_group title="user.password" type="password" name="password" id="password"
-                    :playEye="true" placeholder="password" helperText="password" />
-                {{-- Password --}}
+                {{-- id_number --}}
+                <x-form.input-group title='user.id_number' name='id_number' id='id_number' :value="$data['id_number']" />
+                {{-- id_number --}}
 
-                {{-- Country Multi Select --}}
-                {{-- <x-form.multi_select title="user.country" name="country_id[]">
-                    @foreach ($viewCountries as $c)
-                        <option value="{{ $c['id'] }}"
-                            @if (isset($data)) {{ in_array($c['id'], $data['country_id']) ? 'selected' : '' }} @endif>
-                            {{ $c['name'] }}
-                        </option>
-                    @endforeach
-                </x-form.multi_select> --}}
-                {{-- Country Multi Select --}}
-                {{-- Country Single Select --}}
-                <x-form.single_select title="user.country" name="country_id" :required="true">
-                    @foreach ($viewCountries as $c)
-                        <option value="{{ $c['id'] }}" @if ($c['id'] == $data['country_id']) selected @endif>
-                            {{ $c['name'] }}
-                        </option>
-                    @endforeach
-                </x-form.single_select>
-                {{-- Country Single Select --}}
+                {{-- date_of_birth --}}
+                <x-form.input-group title='user.date_of_birth' name='date_of_birth' id='date_of_birth' :value="$data['date_of_birth']" />
+                {{-- date_of_birth --}}
 
-                {{-- Role Single Select --}}
-                <x-form.single_select title="user.role" name="role_id">
-                    @foreach ($viewRoles as $r)
-                        <option value="{{ $r['id'] }}" @if ($r['id'] == $data['role_id']) selected @endif>
-                            {{ $r['name'] }}
-                        </option>
-                    @endforeach
-                </x-form.single_select>
-                {{-- Role Single Select --}}
+                {{-- father_name --}}
+                <x-form.input-group title='user.father_name' name='father_name' id='father_name' :value="$data['father_name']" />
+                {{-- father_name --}}
 
-                {{-- ID number --}}
-                <x-form.input_group title="user.id_number" name="id_number" id="id_number" :value="$data['id_number']"
-                    placeholder="id_number" />
-                {{-- ID number --}}
+                {{-- father_name_other --}}
+                <x-form.input-group title='user.father_name_other' name='father_name_other' id='father_name_other' :value="$data['father_name_other']" />
+                {{-- father_name_other --}}
 
-                {{-- Date of Birth --}}
-                <x-form.input_group type="date" title="user.date_of_birth" name="date_of_birth" id="date_of_birth"
-                    :value="$data['date_of_birth']" />
-                {{-- Date of Birth --}}
+                {{-- gender --}}
+                <x-form.enum-select title='user.gender' name='gender' id='gender' enumClass='Gender' :value="$data['gender']" />
+                {{-- gender --}}
 
-                {{-- Father Name --}}
-                <x-form.input_group title="user.father_name" name="father_name" id="father_name" :value="$data['father_name']"
-                    placeholder="father_name" />
-                {{-- Father Name --}}
+                {{-- martial_status --}}
+                <x-form.enum-select title='user.martial_status' name='martial_status' id='martial_status' enumClass='MartialStatus' :value="$data['martial_status']" />
+                {{-- martial_status --}}
 
-                {{-- Father Name Other --}}
-                <x-form.input_group title="user.father_name_other" name="father_name_other" id="father_name_other"
-                    :value="$data['father_name_other']" placeholder="father_name_other" />
-                {{-- Father Name Other --}}
+                {{-- education_status --}}
+                <x-form.input-group title='user.education_status' name='education_status' id='education_status' :value="$data['education_status']" />
+                {{-- education_status --}}
 
-                {{-- Gender --}}
-                <x-form.single_select title="user.gender" name="gender">
-                        <option value="Male" @if ($data['gender'] == 'Male') selected @endif>
-                            {{ 'Male' }}
-                        </option>
-                        <option value="Female" @if ($data['gender'] == 'Female') selected @endif>
-                            {{ 'Female' }}
-                        </option>
-                </x-form.single_select>
-                {{-- Gender --}}
+                {{-- occupation --}}
+                <x-form.input-group title='user.occupation' name='occupation' id='occupation' :value="$data['occupation']" />
+                {{-- occupation --}}
 
-                {{-- Martial Status --}}
-                <x-form.single_select title="user.martial_status" name="martial_status">
-                        <option value="Single" @if ($data['martial_status'] == 'Single') selected @endif>
-                            {{ 'Single' }}
-                        </option>
-                        <option value="Married" @if ($data['martial_status'] == 'Married') selected @endif>
-                            {{ 'Married' }}
-                        </option>
-                        <option value="Divorced" @if ($data['martial_status'] == 'Divorced') selected @endif>
-                            {{ 'Divorced' }}
-                        </option>
-                        <option value="Widowed" @if ($data['martial_status'] == 'Widowed') selected @endif>
-                            {{ 'Widowed' }}
-                        </option>
-                </x-form.single_select>
-                {{-- Martial Status --}}
+                {{-- profile_photo --}}
+                <x-form.input-group title='user.profile_photo' name='profile_photo' id='profile_photo' :value="$data['profile_photo']" />
+                {{-- profile_photo --}}
 
-                {{-- Occupation --}}
-                <x-form.input_group title="user.occupation" name="occupation" id="occupation" :value="$data['occupation']"
-                    placeholder="occupation" />
-                {{-- Occupation --}}
+                {{-- country_id --}}
+                <x-form.input-group title='user.country_id' name='country_id' id='country_id' :value="$data['country_id']" />
+                {{-- country_id --}}
 
-                {{-- Status --}}
-                <x-form.select_group title="user.status" name="status">
-                    <x-form.option title="Active" value="1" field="status" />
-                    <x-form.option title="Inactive" value="0" field="status" />
-                </x-form.select_group>
-                {{-- Status --}}
+                {{-- oauth_id --}}
+                <x-form.input-group title='user.oauth_id' name='oauth_id' id='oauth_id' :value="$data['oauth_id']" />
+                {{-- oauth_id --}}
+
+                {{-- oauth_provider --}}
+                <x-form.input-group title='user.oauth_provider' name='oauth_provider' id='oauth_provider' :value="$data['oauth_provider']" />
+                {{-- oauth_provider --}}
+
+                {{-- level --}}
+                <x-form.input-group title='user.level' name='level' id='level' :value="$data['level']" />
+                {{-- level --}}
+
+                {{-- status --}}
+                <x-form.input-group title='user.status' name='status' id='status' :value="$data['status']" />
+                {{-- status --}}
 
             </x-form.grid>
-            {{-- Update and Cancel --}}
-            <x-form.submit :operate="__('messages.update')" :cancel="__('messages.cancel')" url="users.index" />
-            {{-- Update and Cancel --}}
+            {{-- Save And Cancel --}}
+            <x-form.submit :operate="__('messages.save')" :cancel="__('messages.cancel')" url="users.index" />
+            {{-- Save And Cancel --}}
         </form>
     </x-form.layout>
-
-    @vite(['resources/js/common/loginEyes.js', 'resources/js/common/maxFileSize.js'])
 </x-master-layout>

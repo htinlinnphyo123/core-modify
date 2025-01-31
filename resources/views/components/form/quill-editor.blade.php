@@ -11,6 +11,6 @@
     <div id="{{ 'quill_' . $id }}"></div>
     
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" value="{{ $value ?? old($name) }}" />
-    <x-form.helper_text message="{{ $helperText }}" />
+    <x-form.helper-text message="{{ $helperText }}" />
     <x-form.error :field="$name" />
 </x-form.control>

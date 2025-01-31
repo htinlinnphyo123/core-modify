@@ -5,11 +5,11 @@
     $selectedValue ??= old($name)
 @endphp
 
-<x-form.single_select title="{{ $title }}" :id="$id" name="{{ $name }}">
+<x-form.single-select title="{{ $title }}" :id="$id" name="{{ $name }}">
     @foreach ($enumCases as $status)
-        <option value="{{ $status->value }}" 
-            @if ($selectedValue === $status->value) selected @endif>
-            {{ str_replace('_', ' ', $status->name) }}
+        <option value="{{ $status->name }}" 
+            @if ($selectedValue === $status->name) selected @endif>
+            {{ str_replace('_', ' ', $status->value) }}
         </option>
     @endforeach
-</x-form.single_select>
+</x-form.single-select>

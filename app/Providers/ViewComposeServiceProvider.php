@@ -30,5 +30,6 @@ class ViewComposeServiceProvider extends ServiceProvider
     {
         //User
         View::composer('admin.user.create',RoleComposer::class);
+        View::composer('admin.user.edit',RoleComposer::class);
     }
 }
