@@ -1,5 +1,4 @@
 <?php
-
 namespace BasicDashboard\Foundations\Domain\Users;
 
 use App\Observers\AuditObserver;
@@ -36,7 +35,31 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'status' => 'boolean'
+        'status' => 'boolean',
+    ];
+
+    protected $fillable = [
+        "name",
+        "email",
+        "password",
+        "status",
+        "role_id",
+        "name_other",
+        "phone",
+        "id_number",
+        "date_of_birth",
+        "father_name",
+        "father_name_other",
+        "gender",
+        "martial_status",
+        "education_status",
+        "occupation",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "created_by",
+        "updated_by",
+        "deleted_by",
     ];
 
 }

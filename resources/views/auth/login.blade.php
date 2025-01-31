@@ -1,10 +1,10 @@
 <x-app-layout>
     <style>
-        #togglePassword {
-            position: relative;
-            top: -30px;
-            right: -270px;
-        }
+    #togglePassword {
+        position: relative;
+        top: -30px;
+        right: -270px;
+    }
     </style>
     <x-common.failed-message />
     <br><br><br><br><br>
@@ -19,9 +19,9 @@
                 <div class="w-[20rem] flex flex-col mx-auto">
                     <div class="px-2 flex flex-col pb-4">
                         <x-common.label for="name" :title="__('messages.user_name')" />
-                        <x-common.Input type="text" name="name" />
+                        <x-common.input type="text" name="name" />
                         @error('name')
-                            <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class=" px-2 flex flex-col pb-4">

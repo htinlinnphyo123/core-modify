@@ -1,14 +1,15 @@
 <?php
-
 namespace App\Enums;
 
-use App\Traits\Enum\EnumCaseToArray;
+enum Gender: string {
 
-enum Gender :string
-{
-    use EnumCaseToArray;
-    case Male = 'MALE';
+    case Male   = 'MALE';
     case Female = 'FEMALE';
-    case Other = 'OTHER';
+    case Other  = 'OTHER';
+
+    public static function toArray(): array
+    {
+        return array_column(self::cases(), 'name');
+    }
 
 }

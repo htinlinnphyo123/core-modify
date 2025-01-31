@@ -9,10 +9,10 @@
                 <x-table.header :fields="['name']" />
                 <x-table.body :data="$data">
                     @foreach ($data['data'] as $record)
-                        <x-table.body_row>
-                            <x-table.body_column :field="$record['name']" limit="20" />
+                        <x-table.body-row>
+                            <x-table.body-column :field="$record['name']" limit="20" />
                             <x-table.action :id="$record['id']" field="$PLURALIZER_FEATURE$" />
-                        </x-table.body_row>
+                        </x-table.body-row>
                     @endforeach
                 </x-table.body>
             </x-table.wrapper>
