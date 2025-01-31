@@ -56,6 +56,8 @@
                     enumClass='MartialStatus' :selectedValue="$data['martial_status']" />
                 {{-- martial_status --}}
 
+                <x-form.compose-single-select title='user.role' name='role_id' id='role-id' :dataArray="$viewRoles" />
+
                 {{-- education_status --}}
                 <x-form.input-group title='user.education_status' name='education_status' id='education-status'
                     :value="$data['education_status']" />

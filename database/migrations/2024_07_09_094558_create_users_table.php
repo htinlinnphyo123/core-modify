@@ -1,10 +1,11 @@
 <?php
 
 use App\Enums\Gender;
+use App\Enums\Status;
 use App\Enums\MartialStatus;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('name_other')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email');
             $table->string('phone')->nullable();
             $table->string('password');
             $table->string('id_number')->nullable();
@@ -35,7 +36,7 @@ return new class extends Migration
             $table->string('oauth_id')->nullable();
             $table->string('oauth_provider')->nullable();
             $table->unsignedInteger('level')->default(0);
-            $table->boolean('status')->default(false);
+            $table->enum('status',Status::toArray());
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedInteger('deleted_by')->nullable();

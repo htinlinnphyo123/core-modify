@@ -30,12 +30,16 @@ class UserService extends BaseController
         private ResponseFactory $responseFactory
     ) {}
 
-    ///////////////////////////This is Method Divider///////////////////////////////////////
+    /**
+     * Summary of index
+     * @param array $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(array $request): View
     {
         $userList = $this->userRepositoryInterface->getUserList($request);
         $userList = UserResource::collection($userList)->response()->getData(true);
-        return $this->responseFactory->successView(path: self::VIEW . '.index', data: $userList);
+        return $this->responseFactory->successView(self::VIEW . '.index', $userList);
     }
 
     public function create(): View
@@ -63,7 +67,7 @@ class UserService extends BaseController
             $this->userRepositoryInterface->commit();
             return $this->responseFactory->successIndexRedirect(self::ROUTE, __(self::LANG_PATH . '_created'));
         } catch (Exception $e) {
-            return $this->redirectBackWithError($this->userRepositoryInterface, $e);
+            return $this->responseFactory->redirectBackWithError($this->userRepositoryInterface, $e->getMessage());
         }
     }
 
@@ -108,9 +112,9 @@ class UserService extends BaseController
             $data = $this->uploadImageToCloudForUpdate($user, $image, $oldImage); //upload image to digital ocean path(User/id/demo.jpg)
             $user->update($data);
             $this->userRepositoryInterface->commit();
-            return $this->responseFactory->successIndexRedirect(self::ROUTE, __(self::LANG_PATH . '_updated'));
+            return $this->responseFactory->successShowRedirect(self::ROUTE, $id,__(self::LANG_PATH . '_updated'));
         } catch (Exception $e) {
-            return $this->redirectBackWithError($this->userRepositoryInterface, $e);
+            return $this->responseFactory->redirectBackWithError($this->userRepositoryInterface, $e->getMessage());
         }
     }
 
@@ -127,9 +131,9 @@ class UserService extends BaseController
                 $this->deleteImageFromCloud($user->profile_photo);
             }
             $this->userRepositoryInterface->commit();
-            return $this->redirectRoute(self::ROUTE . ".index", __(self::LANG_PATH . '_deleted'));
+            return $this->responseFactory->successIndexRedirect(self::ROUTE, __(self::LANG_PATH . '_deleted'));
         } catch (Exception $e) {
-            return $this->redirectBackWithError($this->userRepositoryInterface, $e);
+            return $this->responseFactory->redirectBackWithError($this->userRepositoryInterface, $e->getMessage());
         }
     }
 

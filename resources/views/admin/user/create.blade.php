@@ -63,13 +63,7 @@
                 {{-- occupation --}}
 
                 {{-- Status --}}
-                <x-form.select-group title="user.status" name="status">
-                    @foreach (config('config.status') as $key=>$value)
-                    <option value="{{ $key }}">
-                        {{ $value }}
-                    </option>
-                    @endforeach
-                </x-form.select-group>
+                <x-form.enum-select title='user.status' name="status" id="user-status" enumClass="Status" />
                 {{-- Status --}}
 
             </x-form.grid>

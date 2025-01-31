@@ -55,7 +55,9 @@
                 {{-- End Dashboard --}}
                 <x-sidebar.list title="sidebar.user-types" model="user-types" icon="fa-solid fa-user" />
                 <x-sidebar.list title="sidebar.user" model="users" icon="fa-solid fa-user" />
-                <x-sidebar.list title="sidebar.page" model="pages" icon="fa-solid fa-scroll" />               
+                <x-sidebar.list title="sidebar.user" model="blogs" icon="fa-solid fa-blog" />
+                <x-sidebar.list title="sidebar.page" model="pages" icon="fa-solid fa-scroll" />        
+                <x-sidebar.list title="sidebar.tag" model="tags" icon="fa-solid fa-scroll" />               
             </ul>
         </div>
         <small class="text-xs text-gray-800/50 font-bold ps-2 fixed bottom-4 left-2 menu-title">

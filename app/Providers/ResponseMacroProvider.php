@@ -45,10 +45,18 @@ class ResponseMacroProvider extends ServiceProvider
                 'responseType' => 'success',
             ]);
         });
-        Response::macro('successShowRedirect',function(string $showRoute,string $id,string $message): RedirectResponse{
+        Response::macro('successShowRedirect',function(string $model,string $id,string $message,string $show='show'): RedirectResponse{
+            $showRoute = "$model.$show";
             return to_route($showRoute,$id)->with([
                 'message' => $message,
                 'responseType' => 'success',
+            ]);
+        });
+        Response::macro('redirectBackWithError',function($repository,$message): RedirectResponse{
+            $repository->rollBack();
+            return redirect()->back()->with([
+                'message' => $message,
+                'responseType' => 'error',
             ]);
         });
 

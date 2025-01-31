@@ -13,7 +13,7 @@ class AddFieldsToView extends Command
      *
      * @var string
      */
-    protected $signature = 'add-fields-to-view {--model=}';
+    protected $signature = 'add-fields-to-view-hello {--model=}';
 
     /**
      * The console command description.
@@ -114,14 +114,35 @@ class AddFieldsToView extends Command
     
             $capitalizeName = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
             $valueBinding = $viewType === 'edit' ? ":value=\"\$data['{$name}']\"" : '';
-    
-            if ($type === 'enum') {
-                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.enum-select title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' enumClass='{$capitalizeName}' {$valueBinding} />\n                {{-- {$name} --}}\n";
-            } else {
-                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.input-group title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' {$valueBinding} />\n                {{-- {$name} --}}\n";
+
+            if($viewType==='show'){
+                $valueBinding = ":data=\"\$data['{$name}']\"";
+                $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-show.text-group title='{$smallLetterTitle}.{$name}' {$valueBinding} />\n                {{-- {$name} --}}\n";
+            } else{
+                //create , edit
+                if ($type === 'enum') {
+                    $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.enum-select title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' enumClass='{$capitalizeName}' {$valueBinding} />\n                {{-- {$name} --}}\n";
+                } else {
+                    $fieldComponents .= "\n                {{-- {$name} --}}\n                <x-form.input-group title='{$smallLetterTitle}.{$name}' name='{$name}' id='{$name}' {$valueBinding} />\n                {{-- {$name} --}}\n";
+                }
             }
+
         }
     
+        if($viewType=='show'){
+            $id = ":id=\"\$data['id']\"";
+    return <<<BLADE
+    <x-master-layout name="{$modelTitle}" headerName="{{ __('sidebar.{$smallLetterTitle}') }}">
+        <x-form.layout>
+            <x-show.go-to-edit model="{$smallPluralTitle}" {$id} />
+            <x-form.grid>
+                {$fieldComponents} 
+            </x-form.grid>
+        </x-form.layout>
+    </x-master-layout>
+    BLADE;
+        }
+
         return <<<BLADE
     <x-master-layout name="{$modelTitle}" headerName="{{ __('sidebar.{$smallLetterTitle}') }}">
         <x-form.layout>

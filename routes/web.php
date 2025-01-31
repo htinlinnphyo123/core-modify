@@ -1,19 +1,11 @@
 <?php
 
-use BasicDashboard\Web\Addresses\Controllers\AddressController;
-use BasicDashboard\Web\Articles\Controllers\ArticleController;
 use BasicDashboard\Web\Audits\Controllers\AuditController;
 use BasicDashboard\Web\Auth\Controllers\AuthController;
-use BasicDashboard\Web\Categories\Controllers\CategoryController;
-use BasicDashboard\Web\Countries\Controllers\CountryController;
-use BasicDashboard\Web\Currencies\Controllers\CurrencyController;
 use BasicDashboard\Web\Dashboard\Controllers\DashboardController;
-use BasicDashboard\Web\Notifications\Controllers\NotificationController;
 use BasicDashboard\Web\Pages\Controllers\PageController;
 use BasicDashboard\Web\Roles\Controllers\RoleController;
 use BasicDashboard\Web\Settings\Controllers\SettingController;
-use BasicDashboard\Web\SponsorAds\Controllers\SponsorAdController;
-use BasicDashboard\Web\Subcategories\Controllers\SubcategoryController;
 use BasicDashboard\Web\Users\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;

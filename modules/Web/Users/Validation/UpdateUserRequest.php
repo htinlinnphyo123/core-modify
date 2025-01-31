@@ -29,7 +29,8 @@ class UpdateUserRequest extends FormRequest
             "email"             => ["required", "email", Rule::unique('users', 'email')
                     ->where(fn($query) => $query->whereNull('deleted_at')
                             ->where('id', '!=', customDecoder($this->id)))],
-            "status"            => "numeric|required",
+            "password" => "",
+            "status"            => "required",
             "role_id"           => "required",
             "name_other"        => "",
             "phone"             => "",
@@ -43,12 +44,6 @@ class UpdateUserRequest extends FormRequest
             "occupation"        => "",
         ];
     }
-
-    /**
-     * After Passed Validation
-     * @return void
-     */
-    protected string|null $password;
 
     protected function passedValidation(): void
     {
