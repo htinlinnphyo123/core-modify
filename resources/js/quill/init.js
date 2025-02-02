@@ -1,11 +1,11 @@
 import startQuillEditor from "./startQuillEditor";
 
-export default function initializeQuillEditor(id="description") {
+export default function initializeQuillEditor(id="description",path="pages/quill") {
     const hiddenInput = document.getElementById(id);
-    console.log('hey')
+    // console.log('hey')
     const quill = startQuillEditor(
         `#quill-${id}`,
-        "pages/quill",
+        path,
         hiddenInput.value
     );
 
