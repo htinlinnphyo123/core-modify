@@ -8,8 +8,7 @@
 ])
 <x-form.control>
     <x-form.label :title="$title" :required="$required" />
-    <div id="{{ 'quill_' . $id }}"></div>
-    
+    <div id="{{ 'quill-' . $id }}"></div>
     <input type="hidden" name="{{ $name }}" id="{{ $id }}" value="{{ $value ?? old($name) }}" />
     <x-form.helper-text message="{{ $helperText }}" />
     <x-form.error :field="$name" />

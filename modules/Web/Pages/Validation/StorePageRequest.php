@@ -25,14 +25,9 @@ class StorePageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // "name"=>"required",
-            "slug" => "required|unique:pages,slug"
+            "title"=>"required",
+            "description" => "required",
         ];
     }
-    protected function passedValidation(): void
-    {
-        $this->merge([
-            'date' => transform($this->date,fn() => Carbon::createFromFormat('m/d/Y', $this->date)->format('Y-m-d'))
-        ]);
-    }
+
 }

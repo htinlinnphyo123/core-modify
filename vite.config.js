@@ -65,6 +65,7 @@ export default defineConfig({
         "resources/js/quill/selectLocalAudio.js",
         "resources/js/quill/selectLocalImage.js",
         "resources/js/quill/startQuillEditor.js",
+        "resources/js/quill/init.js",
 
         //Theme total (1)
         "resources/js/Theme/darkLight.js",

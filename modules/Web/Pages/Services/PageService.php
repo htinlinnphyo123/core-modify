@@ -55,32 +55,32 @@ class PageService extends BaseController
     {
         try {
             //get link count to generate presigned url
-            $link_count = $request['link_count'];            
-            unset($request['link_count']);
+            // $link_count = $request['link_count'];            
+            // unset($request['link_count']);
 
             $this->pageRepository->beginTransaction();
 
             $model = $this->pageRepository->insert($request);
 
             //FOR LINK FIELD (MEDIA image,pdf,video,audio)
-            $path = "pages" . '/' . $model['id'];
-            $generatedUrl = $this->generatePresignedUrl($link_count,$path);
-            $paths = array_column($generatedUrl, 'path'); // to store in db
-            $urls = array_column($generatedUrl,'url'); //to return to frontend 
+            // $path = "pages" . '/' . $model['id'];
+            // $generatedUrl = $this->generatePresignedUrl($link_count,$path);
+            // $paths = array_column($generatedUrl, 'path'); // to store in db
+            // $urls = array_column($generatedUrl,'url'); //to return to frontend 
 
             //thumbnail store
             $thumbnailPath = isset($request['thumbnail']) ? uploadImageToDigitalOcean($request['thumbnail'],$path) : null;
-            $model->update([
-                'link' => $paths,
-                'thumbnail' => $thumbnailPath
-            ]);
+            // $model->update([
+            //     'link' => $paths,
+            //     'thumbnail' => $thumbnailPath
+            // ]);
             $this->pageRepository->commit();
 
             return response()->json([
                 'message' => __(self::LANG_PATH . '_created'),
                 'responseType' => 'success',
                 'status' => 200,
-                'data' => $urls,
+                // 'data' => $urls,
                 'id' => customEncoder($model['id'])
             ]);
         } catch (Exception $e) {

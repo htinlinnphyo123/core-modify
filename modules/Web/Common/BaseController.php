@@ -60,14 +60,10 @@ class BaseController extends Controller
         ]);
     }
 
-    ///////////////////////////This is Method Divider///////////////////////////////////////
-
     public function captureMemory(): int
     {
         return memory_get_usage();
     }
-
-    ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function calculateMemory($startMemory, $endMemory): string
     {
@@ -76,14 +72,10 @@ class BaseController extends Controller
         return $memoryUsed;
     }
 
-    ///////////////////////////This is Method Divider///////////////////////////////////////
-
     public function captureTime(): string
     {
         return microtime(true);
     }
-
-    ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function calculateTime($startTime, $endTime): string
     {
@@ -91,20 +83,6 @@ class BaseController extends Controller
         $time .= ' sec';
         return $time;
     }
-
-    ///////////////////////////This is Method Divider///////////////////////////////////////
-
-    public function uploadImage($file, $directory, $privacy = 'public'): String
-    {
-        return Storage::disk('digitalocean')->putFile($directory, $file, $privacy);
-    }
-
-    public function deleteImage(string $directory): void
-    {
-        Storage::disk('digitalocean')->delete($directory);
-    }
-
-    ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function generatePresignedUrl($count = 1, $filePath): array
     {
@@ -124,8 +102,6 @@ class BaseController extends Controller
 
         return $links;
     }
-
-    ///////////////////////////This is Method Divider///////////////////////////////////////
 
     public function sendAjaxError($message)
     {

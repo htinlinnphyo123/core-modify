@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 11.35.1.
+ * Generated for Laravel 11.41.3.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -4869,6 +4869,18 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
+         * Get the name of the cache store.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function getName()
+        {
+            /** @var \Illuminate\Cache\Repository $instance */
+            return $instance->getName();
+        }
+
+        /**
          * Determine if the current store supports tags.
          *
          * @return bool 
@@ -6500,6 +6512,18 @@ namespace Illuminate\Support\Facades {
         {
             /** @var \Illuminate\Database\DatabaseManager $instance */
             return $instance->build($config);
+        }
+
+        /**
+         * Calculate the dynamic connection name for an on-demand connection based on its configuration.
+         *
+         * @param array $config
+         * @return string 
+         * @static 
+         */
+        public static function calculateDynamicConnectionName($config)
+        {
+            return \Illuminate\Database\DatabaseManager::calculateDynamicConnectionName($config);
         }
 
         /**
@@ -10235,6 +10259,19 @@ namespace Illuminate\Support\Facades {
         {
             /** @var \Illuminate\Translation\Translator $instance */
             $instance->addNamespace($namespace, $hint);
+        }
+
+        /**
+         * Add a new path to the loader.
+         *
+         * @param string $path
+         * @return void 
+         * @static 
+         */
+        public static function addPath($path)
+        {
+            /** @var \Illuminate\Translation\Translator $instance */
+            $instance->addPath($path);
         }
 
         /**
@@ -15582,6 +15619,19 @@ namespace Illuminate\Support\Facades {
         }
 
         /**
+         * Retrieve data from the instance as an array.
+         *
+         * @param array|string|null $key
+         * @return array 
+         * @static 
+         */
+        public static function array($key = null)
+        {
+            /** @var \Illuminate\Http\Request $instance */
+            return $instance->array($key);
+        }
+
+        /**
          * Retrieve data from the instance as a collection.
          *
          * @param array|string|null $key
@@ -17114,7 +17164,7 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyFifteenMinutes()
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyThirtyMinutes()
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes hourly()
-     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes hourlyAt(array|string|int $offset)
+     * @method static \Illuminate\Console\Scheduling\PendingEventAttributes hourlyAt(array|string|int|int[] $offset)
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyOddHour(array|string|int $offset = 0)
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyTwoHours(array|string|int $offset = 0)
      * @method static \Illuminate\Console\Scheduling\PendingEventAttributes everyThreeHours(array|string|int $offset = 0)
@@ -18639,6 +18689,31 @@ namespace Illuminate\Support\Facades {
         {
             /** @var \Illuminate\Session\Store $instance */
             $instance->regenerateToken();
+        }
+
+        /**
+         * Determine if the previous URI is available.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function hasPreviousUri()
+        {
+            /** @var \Illuminate\Session\Store $instance */
+            return $instance->hasPreviousUri();
+        }
+
+        /**
+         * Get the previous URL from the session as a URI instance.
+         *
+         * @return \Illuminate\Support\Uri 
+         * @throws \RuntimeException
+         * @static 
+         */
+        public static function previousUri()
+        {
+            /** @var \Illuminate\Session\Store $instance */
+            return $instance->previousUri();
         }
 
         /**
@@ -23716,6 +23791,70 @@ namespace Illuminate\Routing {
             }
     }
 
+namespace Illuminate\Filesystem {
+    /**
+     * 
+     *
+     */
+    class AwsS3V3Adapter {
+        /**
+         * Note This Generate Presigned Url Only Support S3 Object Storage
+         *
+         * @see \App\Providers\StorageMacroProvider::boot()
+         * @param mixed $count
+         * @param mixed $filePath
+         * @return array 
+         * @static 
+         */
+        public static function generatePresignedUrl($count, $filePath)
+        {
+            return \Illuminate\Filesystem\AwsS3V3Adapter::generatePresignedUrl($count, $filePath);
+        }
+
+            }
+    /**
+     * 
+     *
+     * @mixin \League\Flysystem\FilesystemOperator
+     */
+    class FilesystemAdapter {
+        /**
+         * Note This Generate Presigned Url Only Support S3 Object Storage
+         *
+         * @see \App\Providers\StorageMacroProvider::boot()
+         * @param mixed $count
+         * @param mixed $filePath
+         * @return array 
+         * @static 
+         */
+        public static function generatePresignedUrl($count, $filePath)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::generatePresignedUrl($count, $filePath);
+        }
+
+            }
+    /**
+     * 
+     *
+     */
+    class LocalFilesystemAdapter {
+        /**
+         * Note This Generate Presigned Url Only Support S3 Object Storage
+         *
+         * @see \App\Providers\StorageMacroProvider::boot()
+         * @param mixed $count
+         * @param mixed $filePath
+         * @return array 
+         * @static 
+         */
+        public static function generatePresignedUrl($count, $filePath)
+        {
+            return \Illuminate\Filesystem\LocalFilesystemAdapter::generatePresignedUrl($count, $filePath);
+        }
+
+            }
+    }
+
 
 namespace  {
     class App extends \Illuminate\Support\Facades\App {}
@@ -24096,6 +24235,23 @@ namespace  {
         }
 
         /**
+         * Create a record matching the attributes, or increment the existing record.
+         *
+         * @param array $attributes
+         * @param string $column
+         * @param int|float $default
+         * @param int|float $step
+         * @param array $extra
+         * @return TModel 
+         * @static 
+         */
+        public static function incrementOrCreate($attributes, $column = 'count', $default = 1, $step = 1, $extra = [])
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->incrementOrCreate($attributes, $column, $default, $step, $extra);
+        }
+
+        /**
          * Execute the query and get the first result or throw an exception.
          *
          * @param array|string $columns
@@ -24464,6 +24620,22 @@ namespace  {
         {
             /** @var \Illuminate\Database\Eloquent\Builder $instance */
             return $instance->newModelInstance($attributes);
+        }
+
+        /**
+         * Specify attributes that should be added to any new models created by this builder.
+         * 
+         * The given key / value pairs will also be added as where conditions to the query.
+         *
+         * @param \Illuminate\Contracts\Database\Query\Expression|array|string $attributes
+         * @param mixed $value
+         * @return \Illuminate\Database\Eloquent\Builder<static> 
+         * @static 
+         */
+        public static function withAttributes($attributes, $value = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->withAttributes($attributes, $value);
         }
 
         /**
@@ -25199,6 +25371,38 @@ namespace  {
         }
 
         /**
+         * Add a basic count / exists condition to a relationship query.
+         *
+         * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
+         * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
+         * @param mixed $operator
+         * @param mixed $value
+         * @return \Illuminate\Database\Eloquent\Builder<static> 
+         * @static 
+         */
+        public static function whereDoesntHaveRelation($relation, $column, $operator = null, $value = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->whereDoesntHaveRelation($relation, $column, $operator, $value);
+        }
+
+        /**
+         * Add an "or where" clause to a relationship query.
+         *
+         * @param \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>|string $relation
+         * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
+         * @param mixed $operator
+         * @param mixed $value
+         * @return \Illuminate\Database\Eloquent\Builder<static> 
+         * @static 
+         */
+        public static function orWhereDoesntHaveRelation($relation, $column, $operator = null, $value = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->orWhereDoesntHaveRelation($relation, $column, $operator, $value);
+        }
+
+        /**
          * Add a polymorphic relationship condition to the query with a where clause.
          *
          * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
@@ -25233,10 +25437,44 @@ namespace  {
         }
 
         /**
+         * Add a polymorphic relationship condition to the query with a doesn't have clause.
+         *
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
+         * @param string|array $types
+         * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
+         * @param mixed $operator
+         * @param mixed $value
+         * @return \Illuminate\Database\Eloquent\Builder<static> 
+         * @static 
+         */
+        public static function whereMorphDoesntHaveRelation($relation, $types, $column, $operator = null, $value = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->whereMorphDoesntHaveRelation($relation, $types, $column, $operator, $value);
+        }
+
+        /**
+         * Add a polymorphic relationship condition to the query with an "or doesn't have" clause.
+         *
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
+         * @param string|array $types
+         * @param \Closure|string|array|\Illuminate\Contracts\Database\Query\Expression $column
+         * @param mixed $operator
+         * @param mixed $value
+         * @return \Illuminate\Database\Eloquent\Builder<static> 
+         * @static 
+         */
+        public static function orWhereMorphDoesntHaveRelation($relation, $types, $column, $operator = null, $value = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->orWhereMorphDoesntHaveRelation($relation, $types, $column, $operator, $value);
+        }
+
+        /**
          * Add a morph-to relationship condition to the query.
          *
          * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
-         * @param \Illuminate\Database\Eloquent\Model|string|null $model
+         * @param \Illuminate\Database\Eloquent\Model|iterable<int, \Illuminate\Database\Eloquent\Model>|string|null $model
          * @return \Illuminate\Database\Eloquent\Builder<static> 
          * @static 
          */
@@ -25250,7 +25488,7 @@ namespace  {
          * Add a not morph-to relationship condition to the query.
          *
          * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
-         * @param \Illuminate\Database\Eloquent\Model|string $model
+         * @param \Illuminate\Database\Eloquent\Model|iterable<int, \Illuminate\Database\Eloquent\Model>|string $model
          * @return \Illuminate\Database\Eloquent\Builder<static> 
          * @static 
          */
@@ -25264,7 +25502,7 @@ namespace  {
          * Add a morph-to relationship condition to the query with an "or where" clause.
          *
          * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
-         * @param \Illuminate\Database\Eloquent\Model|string|null $model
+         * @param \Illuminate\Database\Eloquent\Model|iterable<int, \Illuminate\Database\Eloquent\Model>|string|null $model
          * @return \Illuminate\Database\Eloquent\Builder<static> 
          * @static 
          */
@@ -25278,7 +25516,7 @@ namespace  {
          * Add a not morph-to relationship condition to the query with an "or where" clause.
          *
          * @param \Illuminate\Database\Eloquent\Relations\MorphTo<*, *>|string $relation
-         * @param \Illuminate\Database\Eloquent\Model|string $model
+         * @param \Illuminate\Database\Eloquent\Model|iterable<int, \Illuminate\Database\Eloquent\Model>|string $model
          * @return \Illuminate\Database\Eloquent\Builder<static> 
          * @static 
          */
@@ -28005,6 +28243,7 @@ namespace  {
     class Storage extends \Illuminate\Support\Facades\Storage {}
     class Str extends \Illuminate\Support\Str {}
     class URL extends \Illuminate\Support\Facades\URL {}
+    class Uri extends \Illuminate\Support\Uri {}
     class Validator extends \Illuminate\Support\Facades\Validator {}
     class View extends \Illuminate\Support\Facades\View {}
     class Vite extends \Illuminate\Support\Facades\Vite {}

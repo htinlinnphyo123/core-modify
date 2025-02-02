@@ -47,7 +47,7 @@ class PageController extends BaseController
 
     public function store(StorePageRequest $request): JsonResponse
     {
-        return $this->pageService->store($request->all());
+        return $this->pageService->store($request->validated());
     }
 
     ///////////////////////////This is Method Divider///////////////////////////////////////

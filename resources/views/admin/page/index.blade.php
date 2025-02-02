@@ -10,7 +10,7 @@
                 <x-table.body :data="$data">
                     @foreach ($data['data'] as $record)
                         <x-table.body-row>
-                            <x-table.body-column :field="$record['name']" />
+                            <x-table.body-column :field="$record['title']" />
                             <x-table.action :id="$record['id']" field="pages" />
                         </x-table.body-row>
                     @endforeach

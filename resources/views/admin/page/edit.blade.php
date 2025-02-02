@@ -1,6 +1,6 @@
 <x-master-layout name="Page" headerName="{{ __('sidebar.page') }}">
     <x-form.layout>
-        <form action="{{ route('pages.update', $data['id']) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('pages.update', $id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <x-form.grid>

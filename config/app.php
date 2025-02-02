@@ -198,6 +198,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\RepositoryBindingProvider::class,
         App\Providers\ResponseMacroProvider::class,
+        App\Providers\StorageMacroProvider::class,
         \App\Providers\ViewComposeServiceProvider::class,
     ],
 
