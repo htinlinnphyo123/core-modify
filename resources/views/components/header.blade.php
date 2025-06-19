@@ -41,8 +41,7 @@
                     </div>
                 </div>
                 <!-- Dropdown menu -->
-                <div id="logout"
-                    class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700 ">
+                <div id="logout" class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700 ">
                     <ul class="text-sm text-gray-700 dark:text-gray-200 absolute w-60 rounded-lg shadow top-5 right-3 bg-blue-300 px-5 py-3"
                         aria-labelledby="dropdownDefaultButton">
                         <li class="flex flex-col items-center ">
@@ -55,28 +54,27 @@
                             </strong>
                             <strong class="text-gray-500 text-m">
                                 @if (Auth::user()?->role !== null)
-                                    {{ Auth::user()?->role->name }}
+                                {{ Auth::user()?->role->name }}
                                 @endif
                             </strong>
                         </li>
                         <br>
                         <li class="text-center">
-                            
-                                <a href="{{ route('userProfile') }}" class="mx-auto text-white bg-red-600 hover:bg-red-800 focus:ring-4
+
+                            <a href="{{ route('userProfile') }}" class="mx-auto text-white bg-red-600 hover:bg-red-800 focus:ring-4
                                     focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm
                                         inline-flex items-center px-5 py-2.5 text-center ml-2">
-                                   
-                                        {{ __('messages.profile_btn') }}
-                                </a>
-                            
+
+                                {{ __('messages.profile_btn') }}
+                            </a>
+
                         </li>
                         <br>
                         <li class="text-center">
                             <form action="{{ route('logout') }}" method="POST" class="inline-flex w-full logoutForm">
                                 @csrf
                                 <a class="mx-auto">
-                                    <button
-                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4
+                                    <button class="text-white bg-red-600 hover:bg-red-800 focus:ring-4
                                     focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm
                                         inline-flex items-center px-5 py-2.5 text-center ml-2">
                                         {{ __('messages.logout_btn') }}</button>
